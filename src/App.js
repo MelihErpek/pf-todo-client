@@ -1,23 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Router from "./Router/Router";
+import Nav from "./Components/Nav";
+import { AuthContextProvider } from "./Context/AuthContext";
 
 function App() {
+  const [userData, setUserData] = useState({
+    token: undefined,
+    user: undefined,
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AuthContextProvider value={{ userData, setUserData }}>
+        <Nav />
+        <Router />
+      </AuthContextProvider>
     </div>
   );
 }
